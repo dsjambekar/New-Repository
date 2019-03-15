@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
-  submit(){
+  submit() {
     alert('Hi ' + this.nameFormControl.value + '! Your message is saved!');
   }
 }
