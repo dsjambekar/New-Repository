@@ -5,4 +5,21 @@
 html, body {
     margin: 0;
     height: 100%;
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+h1{
+  font-weight: 300;
+  margin: 0;
+  padding: 28px 18px;
+  font-size: 35px;
+  color: #fff;
+  background: #3f51b5;
+}
+
+.component-body{
+  border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+    padding: 20px;
 }
