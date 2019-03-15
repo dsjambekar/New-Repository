@@ -328,10 +328,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@angular/material/sidenav
-
 @angular/forms
 MIT
+
+@angular/material/form-field
+
+@angular/material/button
+
+@angular/material/sidenav
 
 @angular/material/core
 
@@ -340,8 +344,6 @@ MIT
 @angular/material/icon
 
 @angular/material/toolbar
-
-@angular/material/button
 
 zone.js
 MIT
