@@ -43,6 +43,9 @@ app.get('*', (req, res) => {
   res.render('index', { req });
 });
 
+const compression = require('compression');
+app.use(compression());
+
 // Start up the Node server
 app.listen(PORT, () => {
   console.log(`Node Express server listening on http://localhost:${PORT}`);
