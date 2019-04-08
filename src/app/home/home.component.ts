@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialUser, AuthService } from 'angular-6-social-login';
+import { UserService } from '../user.service';
+import { UserModel } from '../user.model';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  user: UserModel = null;
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
+    console.log(this.userService.getUser());
+    this.user = this.userService.getUser();
   }
 
 }

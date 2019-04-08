@@ -10,5 +10,5 @@
     <a mat-button routerLink="/contact">Contact</a>
   </div>
   <span class="spacer"></span>
-    <a mat-button routerLink="/account">Log In</a>
+    <a mat-button (click)="changeUserStatus()" >{{loginText}}</a>
 </mat-toolbar>
