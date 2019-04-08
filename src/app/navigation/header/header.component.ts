@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SigninComponent } from 'src/app/signin/signin.component';
 import { MatDialog } from '@angular/material';
 import { UserService } from 'src/app/user.service';
-import { userInfo } from 'os';
 
 @Component({
   selector: 'app-header',
