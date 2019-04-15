@@ -32,9 +32,9 @@ export class ContactComponent implements OnInit {
   submit() {
     alert('Hi ' + this.nameFormControl.value + '! Your message is saved!');
     const contactDetails = new ContactDetails();
-    contactDetails.name = this.nameFormControl.value;
-    contactDetails.email = this.emailFormControl.value;
-    contactDetails.message = this.messageFormControl.value;
+    contactDetails.Name = this.nameFormControl.value;
+    contactDetails.Email = this.emailFormControl.value;
+    contactDetails.Description = this.messageFormControl.value;
     this.rest.addProduct(contactDetails).subscribe((result) => {
       console.log(result);
     }, (err) => {
