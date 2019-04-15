@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
+import { ContactService } from './contact.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContactDetails } from '../shared/contact';
 
 @Component({
   selector: 'app-contact',
@@ -21,12 +24,21 @@ export class ContactComponent implements OnInit {
     Validators.required
   ]);
 
-  constructor() { }
+  constructor(public rest: ContactService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
 
   submit() {
     alert('Hi ' + this.nameFormControl.value + '! Your message is saved!');
+    const contactDetails = new ContactDetails();
+    contactDetails.name = this.nameFormControl.value;
+    contactDetails.email = this.emailFormControl.value;
+    contactDetails.message = this.messageFormControl.value;
+    this.rest.addProduct(contactDetails).subscribe((result) => {
+      console.log(result);
+    }, (err) => {
+      console.log(err);
+    });
   }
 }

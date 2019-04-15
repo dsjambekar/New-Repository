@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
@@ -23,6 +24,7 @@ import {
 } from 'angular-6-social-login';
 import { SigninComponent } from './signin/signin.component';
 import { environment } from 'src/environments/environment.prod';
+import { HttpClientModule } from '@angular/common/http';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -40,6 +42,14 @@ export function getAuthServiceConfigs() {
   );
   return config;
 }
+
+const appRoutes: Routes = [
+  {
+    path: 'send-contact',
+    component: ContactComponent,
+    data: { title: 'Send contact form' }
+  }
+];
 
 @NgModule({
   declarations: [
@@ -60,6 +70,10 @@ export function getAuthServiceConfigs() {
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [{
     provide: AuthServiceConfig,
