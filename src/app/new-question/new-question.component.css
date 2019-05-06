@@ -1,0 +1,42 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid lightgray;
+  padding: 5px;
+}
+
+/* .example-container > * {
+  width: 100%;
+} */
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+.mat-label{
+  font-weight: bold;
+  min-width: 250px;
+  margin: 20px;
+}
+
+.mat-checkbox{
+  margin: 20px;
+}
+
+.long-form-field{
+  width: 600px;
+}
+
+.quillEditor{
+  height: 200px;
+}
+

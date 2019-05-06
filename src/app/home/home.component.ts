@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialUser, AuthService } from 'angular-6-social-login';
 import { UserService } from '../user.service';
 import { UserModel } from '../user.model';
 
@@ -14,7 +13,6 @@ export class HomeComponent implements OnInit {
   constructor(public userService: UserService) { }
 
   ngOnInit() {
-    console.log(this.userService.getUser());
     this.user = this.userService.getUser();
   }
 

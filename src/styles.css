@@ -23,3 +23,8 @@ h1{
     border-style: solid;
     padding: 20px;
 }
+
+.mat-grid-tile .mat-figure {
+  justify-content: flex-start !important ;
+  align-items: flex-start !important;
+}

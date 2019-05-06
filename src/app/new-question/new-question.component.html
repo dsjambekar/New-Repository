@@ -1,36 +1,66 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
-<mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-vertical-stepper>
+<div class="example-container">
+  <!-- <form [formGroup]="newQuestion"> -->
+      <mat-grid-list cols="2" rowHeight="80px" >
+          <mat-grid-tile>
+              <div class="mat-label">Question Type</div>
+              <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
+                  <mat-select required>
+                    <mat-option value="option">VA</mat-option>
+                    <mat-option value="option">QA</mat-option>
+                    <mat-option value="option">LR</mat-option>
+                    <mat-option value="option">DI</mat-option>
+                  </mat-select>
+                  <mat-label>
+                    Select
+                  </mat-label>
+                </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <mat-checkbox>Is Public</mat-checkbox>
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <div class="mat-label">Difficulty Level</div>
+              <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
+                  <mat-select required>
+                    <mat-option value="option">Easy</mat-option>
+                    <mat-option value="option">Medium</mat-option>
+                    <mat-option value="option">Hard</mat-option>
+                  </mat-select>
+                  <mat-label>
+                    Select
+                  </mat-label>
+                </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+          </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="1" rowHeight="300px" >
+        <mat-grid-tile>
+            <div class="mat-label">Enter the question here:</div>
+                <quill-editor class="quillEditor"></quill-editor>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="listOptions.length==0">
+            <div class="mat-label">Multi choice question?</div>
+            <button (click)="addOption(0)" mat-flat-button color="primary">Add option</button>
+        </mat-grid-tile>
+        <mat-grid-tile *ngFor="let option of listOptions;let i = index">
+            <div class="mat-label">Enter the option here:</div>
+                <mat-checkbox [(ngModel)] = "option.IsCorrectAnswer"></mat-checkbox>
+                <quill-editor class="quillEditor"  [(ngModel)] = "option.Body"></quill-editor>
+                <button (click)="addOption(i)" mat-mini-fab color="primary">+</button>
+                <button (click)="removeOption(i)" mat-mini-fab color="accent">-</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="mat-label">Enter the explanation here:</div>
+                <quill-editor class="quillEditor"></quill-editor>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="mat-label"></div>
+          <button mat-raised-button color="primary">Save</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+
+
+  <!-- </form> -->
+</div>

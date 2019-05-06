@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { UserModel } from 'src/app/user.model';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-sidenav-list',
@@ -9,9 +11,11 @@ export class SidenavListComponent implements OnInit {
 
   @Output() sidenavClose = new EventEmitter();
 
-  constructor() { }
+  user: UserModel = null;
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
+    this.user = this.userService.getUser();
   }
 
   public onSidenavClose = () => {

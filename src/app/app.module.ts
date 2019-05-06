@@ -16,6 +16,8 @@ import { ContactComponent } from './contact/contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NewQuestionComponent } from './new-question/new-question.component';
 
+import { QuillModule } from 'ngx-quill';
+
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -23,8 +25,11 @@ import {
   FacebookLoginProvider,
 } from 'angular-6-social-login';
 import { SigninComponent } from './signin/signin.component';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginButtonComponent } from './login-button/login-button.component';
+import { MyRepoComponent } from './my-repo/my-repo.component';
+import { QuestionListComponent } from './question-list/question-list.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -60,7 +65,10 @@ const appRoutes: Routes = [
     ContactComponent,
     NotFoundComponent,
     NewQuestionComponent,
-    SigninComponent
+    SigninComponent,
+    LoginButtonComponent,
+    MyRepoComponent,
+    QuestionListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -73,7 +81,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule
   ],
   providers: [{
     provide: AuthServiceConfig,

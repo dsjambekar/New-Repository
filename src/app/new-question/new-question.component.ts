@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
@@ -8,18 +9,25 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class NewQuestionComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  newQuestion: FormGroup;
+  listOptions: any = [];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(fb: FormBuilder) {
+    this.newQuestion = fb.group({
+      hideRequired: false,
+      floatLabel: 'auto',
+    });
+  }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    // this.listOptions  = [new Option(), new Option()];
+  }
+
+  addOption(index){
+    this.listOptions.splice(index + 1, 0, new Option());
+  }
+
+  removeOption(index){
+    this.listOptions.splice(index, 1);
   }
 }
