@@ -1,4 +1,4 @@
-export class ContactDetails{
+export class ContactDetails {
   Name: string;
   Email: string;
   Contact: string;

@@ -8,7 +8,7 @@ import {
 } from 'angular-6-social-login';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HeaderComponent } from '../navigation/header/header.component';
-import { UserService } from '../user.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +18,7 @@ import { UserService } from '../user.service';
 
 export class SigninComponent {
 
-  constructor( private socialAuthService: AuthService,public userService: UserService,
+  constructor( private socialAuthService: AuthService, public userService: UserService,
     public dialogRef: MatDialogRef<HeaderComponent>) {}
 
   public socialSignIn(socialPlatform: string) {

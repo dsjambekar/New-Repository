@@ -23,11 +23,11 @@ export class NewQuestionComponent implements OnInit {
     // this.listOptions  = [new Option(), new Option()];
   }
 
-  addOption(index){
+  addOption(index) {
     this.listOptions.splice(index + 1, 0, new Option());
   }
 
-  removeOption(index){
+  removeOption(index) {
     this.listOptions.splice(index, 1);
   }
 }

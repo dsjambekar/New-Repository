@@ -1,4 +1,4 @@
-export class Option{
+export class Option {
   Body: string;
   IsCorrectAnswer: boolean;
 }

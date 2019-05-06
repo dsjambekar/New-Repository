@@ -25,7 +25,7 @@ import {
   FacebookLoginProvider,
 } from 'angular-6-social-login';
 import { SigninComponent } from './signin/signin.component';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginButtonComponent } from './login-button/login-button.component';
 import { MyRepoComponent } from './my-repo/my-repo.component';
@@ -33,7 +33,7 @@ import { QuestionListComponent } from './question-list/question-list.component';
 
 // Configs
 export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
+  const config = new AuthServiceConfig(
       [
         {
           id: FacebookLoginProvider.PROVIDER_ID,
