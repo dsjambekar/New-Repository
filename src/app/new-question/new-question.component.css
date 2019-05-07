@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: 20px;
   border: 1px solid lightgray;
-  padding: 5px;
+  padding: 5px 20px;
 }
 
 /* .example-container > * {
@@ -24,8 +24,8 @@
 
 .mat-label{
   font-weight: bold;
-  min-width: 250px;
-  margin: 20px;
+  min-width: 200px;
+  margin: 20px 0px;
 }
 
 .mat-checkbox{
@@ -38,5 +38,14 @@
 
 .quillEditor{
   height: 200px;
+}
+
+.mat-list-item {
+  height: auto;
+  margin:10px;
+}
+
+.list-item{
+  margin-top:20px;
 }
 

@@ -1,7 +1,7 @@
-<div class="example-container">
+<div class="example-container"  fxLayout="column" fxLayoutAlign="space-evenly none" >
   <!-- <form [formGroup]="newQuestion"> -->
-      <mat-grid-list cols="2" rowHeight="80px" >
-          <mat-grid-tile>
+      <mat-list role="list">
+          <mat-list-item>
               <div class="mat-label">Question Type</div>
               <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
                   <mat-select required>
@@ -14,11 +14,8 @@
                     Select
                   </mat-label>
                 </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-              <mat-checkbox>Is Public</mat-checkbox>
-          </mat-grid-tile>
-          <mat-grid-tile>
+          </mat-list-item>
+          <mat-list-item>
               <div class="mat-label">Difficulty Level</div>
               <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
                   <mat-select required>
@@ -30,34 +27,38 @@
                     Select
                   </mat-label>
                 </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-          </mat-grid-tile>
-    </mat-grid-list>
-    <mat-grid-list cols="1" rowHeight="300px" >
-        <mat-grid-tile>
-            <div class="mat-label">Enter the question here:</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox>Is Public</mat-checkbox>
+        </mat-list-item>
+    </mat-list>
+    <mat-list>
+        <mat-list-item>
+            <div class="list-item">Enter the question here:
                 <quill-editor class="quillEditor"></quill-editor>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="listOptions.length==0">
-            <div class="mat-label">Multi choice question?</div>
-            <button (click)="addOption(0)" mat-flat-button color="primary">Add option</button>
-        </mat-grid-tile>
-        <mat-grid-tile *ngFor="let option of listOptions;let i = index">
-            <div class="mat-label">Enter the option here:</div>
+              </div>
+        </mat-list-item>
+          <mat-list-item  *ngIf="listOptions.length==0">
+            <button (click)="addOption(-1)" mat-flat-button color="primary">Add option</button>
+        </mat-list-item>
+          <mat-list-item  *ngFor="let option of listOptions;let i = index">
+            <div class="list-item">
+                Enter the option here:
                 <mat-checkbox [(ngModel)] = "option.IsCorrectAnswer"></mat-checkbox>
                 <quill-editor class="quillEditor"  [(ngModel)] = "option.Body"></quill-editor>
                 <button (click)="addOption(i)" mat-mini-fab color="primary">+</button>
                 <button (click)="removeOption(i)" mat-mini-fab color="accent">-</button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <div class="mat-label">Enter the explanation here:</div>
+            </div>
+
+        </mat-list-item>
+        <mat-list-item>
+            <div class="class="list-item>Enter the explanation here:
                 <quill-editor class="quillEditor"></quill-editor>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <div class="mat-label"></div>
-          <button mat-raised-button color="primary">Save</button>
-        </mat-grid-tile>
-    </mat-grid-list>
+              </div>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-flat-button color="primary">Save</button>
+        </mat-list-item>
+    </mat-list>
   <!-- </form> -->
 </div>

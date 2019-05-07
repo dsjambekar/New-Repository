@@ -31,7 +31,7 @@ import { LoginButtonComponent } from './login-button/login-button.component';
 import { MyRepoComponent } from './my-repo/my-repo.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { WindowRef } from './WindowRef';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 // Configs
@@ -85,7 +85,8 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    QuillModule
+    QuillModule,
+    FlexLayoutModule
   ],
   providers: [{
     provide: AuthServiceConfig,
