@@ -30,6 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginButtonComponent } from './login-button/login-button.component';
 import { MyRepoComponent } from './my-repo/my-repo.component';
 import { QuestionListComponent } from './question-list/question-list.component';
+import { WindowRef } from './WindowRef';
+
+
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -87,10 +90,16 @@ const appRoutes: Routes = [
   providers: [{
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
-  }],
+  },
+  { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
+  WindowRef ],
   bootstrap: [AppComponent],
   entryComponents: [
     SigninComponent
   ]
 })
 export class AppModule { }
+
+export function getLocalStorage() {
+  return (typeof window !== 'undefined') ? window.localStorage : null;
+}
