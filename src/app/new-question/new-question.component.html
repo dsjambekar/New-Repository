@@ -1,14 +1,14 @@
 <div class="example-container"  fxLayout="column" fxLayoutAlign="space-evenly none" >
-  <!-- <form [formGroup]="newQuestion"> -->
+  <form [formGroup]="newQuestion" (ngSubmit)="onSubmit()">
       <mat-list role="list">
           <mat-list-item>
-              <div class="list-item">Question Type:
+              <div>Question Type:
               <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
-                  <mat-select required>
-                    <mat-option value="option">VA</mat-option>
-                    <mat-option value="option">QA</mat-option>
-                    <mat-option value="option">LR</mat-option>
-                    <mat-option value="option">DI</mat-option>
+                  <mat-select required formControlName="questionType">
+                    <mat-option value="VA">VA</mat-option>
+                    <mat-option value="QA">QA</mat-option>
+                    <mat-option value="LR">LR</mat-option>
+                    <mat-option value="DI">DI</mat-option>
                   </mat-select>
                   <mat-label>
                     Select
@@ -17,12 +17,12 @@
               </div>
           </mat-list-item>
           <mat-list-item>
-              <div class="list-item">Difficulty Level:
+              <div>Difficulty Level:
               <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
-                  <mat-select required>
-                    <mat-option value="option">Easy</mat-option>
-                    <mat-option value="option">Medium</mat-option>
-                    <mat-option value="option">Hard</mat-option>
+                  <mat-select required formControlName="difficultyLevel">
+                    <mat-option value="Easy">Easy</mat-option>
+                    <mat-option value="Medium">Medium</mat-option>
+                    <mat-option value="Hard">Hard</mat-option>
                   </mat-select>
                   <mat-label>
                     Select
@@ -31,23 +31,23 @@
               </div>
           </mat-list-item>
           <mat-list-item>
-            <mat-checkbox>Is Public</mat-checkbox>
+            <mat-checkbox formControlName="isPublic">Is Public</mat-checkbox>
         </mat-list-item>
     </mat-list>
     <mat-list>
         <mat-list-item>
             <div class="list-item">Enter the question here:
-                <quill-editor [modules]="quillConfig" class="quillEditor"></quill-editor>
+                <quill-editor [modules]="quillConfig" class="quillEditor" formControlName="question"></quill-editor>
               </div>
         </mat-list-item>
           <mat-list-item  *ngIf="listOptions.length==0">
             <button (click)="addOption(-1)" mat-flat-button color="primary">Add option</button>
         </mat-list-item>
-          <mat-list-item  *ngFor="let option of listOptions;let i = index">
-            <div class="list-item">
+          <mat-list-item formArrayName="options"  *ngFor="let option of options.controls;let i = index">
+            <div class="list-item" [formGroup]="options.at(i)">
                 Enter the option here:
-                <mat-checkbox [(ngModel)] = "option.IsCorrectAnswer"></mat-checkbox>
-                <quill-editor [modules]="quillConfig"  class="quillEditor"  [(ngModel)] = "option.Body"></quill-editor>
+                <mat-checkbox formControlName = "isCorrect"></mat-checkbox>
+                <quill-editor [modules]="quillConfig"  class="quillEditor"  formControlName="body"></quill-editor>
                 <button (click)="addOption(i)" mat-mini-fab color="primary">+</button>
                 <button (click)="removeOption(i)" mat-mini-fab color="accent">-</button>
             </div>
@@ -55,12 +55,18 @@
         </mat-list-item>
         <mat-list-item>
             <div class="list-item">Enter the explanation here:
-                <quill-editor [modules]="quillConfig"  class="quillEditor"></quill-editor>
+                <quill-editor [modules]="quillConfig"  class="quillEditor" formControlName="explanation"></quill-editor>
               </div>
         </mat-list-item>
         <mat-list-item>
-          <button mat-flat-button color="primary">Save</button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="!newQuestion.valid">Save</button>
         </mat-list-item>
     </mat-list>
-  <!-- </form> -->
+  </form>
+  <p>
+    Form Value: {{ newQuestion.value |json }}
+  </p>
+  <p>
+    Form Status: {{ newQuestion.status }}
+  </p>
 </div>

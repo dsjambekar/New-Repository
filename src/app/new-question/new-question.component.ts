@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 
 
 @Component({
@@ -9,24 +9,25 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class NewQuestionComponent implements OnInit {
 
-  constructor(fb: FormBuilder) {
+  constructor(public fb: FormBuilder) {
     this.newQuestion = fb.group({
       hideRequired: false,
       floatLabel: 'auto',
+      questionType: new FormControl(''),
+      difficultyLevel: new FormControl(''),
+      isPublic: new FormControl(true),
+      question: new FormControl('', Validators.required),
+      explanation: new FormControl('', Validators.required),
+      options: fb.array([])
     });
   }
 
   newQuestion: FormGroup;
   listOptions: any = [];
 
-  atValues = [
-    { id: 1, value: 'Fredrik Sundqvist', link: 'https://google.com' },
-    { id: 2, value: 'Patrik Sjölin' }
-  ];
-  hashValues = [
-    { id: 3, value: 'Fredrik Sundqvist 2' },
-    { id: 4, value: 'Patrik Sjölin 2' }
-  ];
+  get options() {
+    return this.newQuestion.get('options') as FormArray;
+  }
 
   quillConfig = {
     toolbar: {
@@ -70,22 +71,35 @@ export class NewQuestionComponent implements OnInit {
   };
 
   ngOnInit() {
-    // this.listOptions  = [new Option(), new Option()];
   }
 
   addOption(index) {
     if (index === -1) {
-    this.listOptions.splice(index + 1, 0, new Option());
+    this.options.insert(0,
+      this.fb.group({
+      isCorrect: '',
+      body: '',
+    }));
     index = 0;
     }
-    this.listOptions.splice(index + 1, 0, new Option());
+
+    this.options.insert(index + 1,
+      this.fb.group({
+      isCorrect: '',
+      body: '',
+    }));
   }
 
   removeOption(index) {
-    if(this.listOptions.length == 2){
-    this.listOptions.splice(0, 1);
+    if(this.options.length === 2){
+    this.options.removeAt(0);
     index = 0;
     }
-    this.listOptions.splice(index, 1);
+    this.options.removeAt(index);
+  }
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.newQuestion.value);
   }
 }
