@@ -9,9 +9,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class NewQuestionComponent implements OnInit {
 
-  newQuestion: FormGroup;
-  listOptions: any = [];
-
   constructor(fb: FormBuilder) {
     this.newQuestion = fb.group({
       hideRequired: false,
@@ -19,13 +16,65 @@ export class NewQuestionComponent implements OnInit {
     });
   }
 
+  newQuestion: FormGroup;
+  listOptions: any = [];
+
+  atValues = [
+    { id: 1, value: 'Fredrik Sundqvist', link: 'https://google.com' },
+    { id: 2, value: 'Patrik Sjölin' }
+  ];
+  hashValues = [
+    { id: 3, value: 'Fredrik Sundqvist 2' },
+    { id: 4, value: 'Patrik Sjölin 2' }
+  ];
+
+  quillConfig = {
+    toolbar: {
+      container: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['code-block'],
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        // [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        // [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        // [{ 'direction': 'rtl' }],                         // text direction
+
+        // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        // [{ 'font': [] }],
+        // [{ 'align': [] }],
+         ['link', 'image']
+      ],
+      handlers: {'emoji': function() {}}
+    },
+    keyboard: {
+      bindings: {
+        // shiftEnter: {
+        //   key: 13,
+        //   shiftKey: true,
+        //   handler: (range, context) => {
+        //     // Handle shift+enter
+        //     console.log("shift+enter")
+        //   }
+        // },
+        enter: {
+          key: 13,
+          handler: (range, context) => {
+            console.log('enter');
+            return true;
+          }
+        }
+      }
+    }
+  };
+
   ngOnInit() {
     // this.listOptions  = [new Option(), new Option()];
   }
 
   addOption(index) {
-    if(index === -1)
-    {
+    if (index === -1) {
     this.listOptions.splice(index + 1, 0, new Option());
     index = 0;
     }
@@ -33,6 +82,10 @@ export class NewQuestionComponent implements OnInit {
   }
 
   removeOption(index) {
+    if(this.listOptions.length == 2){
+    this.listOptions.splice(0, 1);
+    index = 0;
+    }
     this.listOptions.splice(index, 1);
   }
 }

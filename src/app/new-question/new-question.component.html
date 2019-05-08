@@ -2,7 +2,7 @@
   <!-- <form [formGroup]="newQuestion"> -->
       <mat-list role="list">
           <mat-list-item>
-              <div class="mat-label">Question Type</div>
+              <div class="list-item">Question Type:
               <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
                   <mat-select required>
                     <mat-option value="option">VA</mat-option>
@@ -14,9 +14,10 @@
                     Select
                   </mat-label>
                 </mat-form-field>
+              </div>
           </mat-list-item>
           <mat-list-item>
-              <div class="mat-label">Difficulty Level</div>
+              <div class="list-item">Difficulty Level:
               <mat-form-field [floatLabel]="newQuestion.value.floatLabel" appearance="outline">
                   <mat-select required>
                     <mat-option value="option">Easy</mat-option>
@@ -27,6 +28,7 @@
                     Select
                   </mat-label>
                 </mat-form-field>
+              </div>
           </mat-list-item>
           <mat-list-item>
             <mat-checkbox>Is Public</mat-checkbox>
@@ -35,7 +37,7 @@
     <mat-list>
         <mat-list-item>
             <div class="list-item">Enter the question here:
-                <quill-editor class="quillEditor"></quill-editor>
+                <quill-editor [modules]="quillConfig" class="quillEditor"></quill-editor>
               </div>
         </mat-list-item>
           <mat-list-item  *ngIf="listOptions.length==0">
@@ -45,15 +47,15 @@
             <div class="list-item">
                 Enter the option here:
                 <mat-checkbox [(ngModel)] = "option.IsCorrectAnswer"></mat-checkbox>
-                <quill-editor class="quillEditor"  [(ngModel)] = "option.Body"></quill-editor>
+                <quill-editor [modules]="quillConfig"  class="quillEditor"  [(ngModel)] = "option.Body"></quill-editor>
                 <button (click)="addOption(i)" mat-mini-fab color="primary">+</button>
                 <button (click)="removeOption(i)" mat-mini-fab color="accent">-</button>
             </div>
 
         </mat-list-item>
         <mat-list-item>
-            <div class="class="list-item>Enter the explanation here:
-                <quill-editor class="quillEditor"></quill-editor>
+            <div class="list-item">Enter the explanation here:
+                <quill-editor [modules]="quillConfig"  class="quillEditor"></quill-editor>
               </div>
         </mat-list-item>
         <mat-list-item>
