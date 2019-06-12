@@ -32,6 +32,7 @@ import { MyRepoComponent } from './my-repo/my-repo.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { WindowRef } from './WindowRef';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 
 // Configs
@@ -90,10 +91,11 @@ const appRoutes: Routes = [
   ],
   providers: [{
     provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs
+    useFactory: getAuthServiceConfigs,
   },
   { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
-  WindowRef ],
+  WindowRef,
+AuthGuardService ],
   bootstrap: [AppComponent],
   entryComponents: [
     SigninComponent

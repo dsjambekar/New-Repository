@@ -4,11 +4,12 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MyRepoComponent } from './my-repo/my-repo.component';
+import { AuthGuardService  as AuthGuard } from './shared/auth-guard.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'contact', component: ContactComponent},
-  { path: 'repo', component: MyRepoComponent},
+  { path: 'repo', component: MyRepoComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}

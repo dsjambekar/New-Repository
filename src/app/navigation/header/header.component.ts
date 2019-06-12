@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { UserModel } from 'src/app/shared/user.model';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +11,11 @@ export class HeaderComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor() { }
+  user: UserModel = null;
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
+    this.user = this.userService.getUser();
   }
 
   public onToggleSidenav = () => {
