@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { UserModel } from 'src/app/shared/user.model';
-import { UserService } from 'src/app/shared/user.service';
+import { UserModel } from '../../../app/shared/user.model';
+import { UserService } from '../../../app/shared/user.service';
 
 @Component({
   selector: 'app-header',
