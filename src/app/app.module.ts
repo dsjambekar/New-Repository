@@ -33,6 +33,7 @@ import { QuestionListComponent } from './question-list/question-list.component';
 import { WindowRef } from './WindowRef';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
 
 // Configs
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
     SigninComponent,
     LoginButtonComponent,
     MyRepoComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuestionDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

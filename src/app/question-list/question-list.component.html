@@ -1,4 +1,7 @@
-<p>
+<!-- <p>
   question-list works!
-</p>
-
+</p> -->
+<div *ngFor="let p of questions; let i=index;">
+  <!-- {{p|json}} -->
+  <app-question-detail [question]="p"></app-question-detail>
+</div>

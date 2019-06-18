@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  googleLoginProviderId: '939928615748-a4q3gq6pjuhjmptrfu4vanhinqh1i9do.apps.googleusercontent.com'
+  googleLoginProviderId: '939928615748-a4q3gq6pjuhjmptrfu4vanhinqh1i9do.apps.googleusercontent.com',
+  backendEndpoint:'http://localhost:4000/'
+
 };
 
 /*
