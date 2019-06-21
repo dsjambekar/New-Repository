@@ -39,10 +39,9 @@ export class QuestionService {
       map(this.extractData));
   }
 
-  addProduct (question): Observable<any> {
+  addQuestion (question): Observable<any> {
     console.log(question);
     return this.http.post<any>(endpoint + 'create', JSON.stringify(question), httpOptions).pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       tap((question) => console.log(`added question w/ id=${question.id}`)),
       catchError(this.handleError<any>('addQuestion'))
     );

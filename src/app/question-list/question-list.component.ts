@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../new-question/question.service';
 import { UserModel } from '../shared/user.model';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-question-list',
@@ -11,7 +12,7 @@ export class QuestionListComponent implements OnInit {
   questions:any = [];
   @Input() user: UserModel;
 
-  constructor(public service:QuestionService) { }
+  constructor(public service:QuestionService, public userService: UserService) { }
 
   ngOnInit() {
     this.getQuestions();

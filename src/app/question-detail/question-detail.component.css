@@ -1,3 +1,10 @@
 .question-detail{
   border: 1px gray solid;
 }
+
+.mat-stroked-button{
+  text-align: left;
+  height: 50px;
+  margin-left:10px;
+}
+

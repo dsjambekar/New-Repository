@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import { QuestionService } from './question.service';
+import { UserService } from '../shared/user.service';
+import { UserModel } from '../shared/user.model';
 
 
 @Component({
@@ -9,7 +12,8 @@ import {FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angul
 })
 export class NewQuestionComponent implements OnInit {
 
-  constructor(public fb: FormBuilder) {
+  user: UserModel = null;
+  constructor(public fb: FormBuilder, public service:QuestionService,public userService: UserService) {
     this.newQuestion = fb.group({
       hideRequired: false,
       floatLabel: 'auto',
@@ -17,10 +21,12 @@ export class NewQuestionComponent implements OnInit {
       difficultyLevel: new FormControl(''),
       isPublic: new FormControl(true),
       question: new FormControl('', Validators.required),
-      explanation: new FormControl('', Validators.required),
+      explanation: new FormControl(''),
       options: fb.array([])
     });
   }
+
+  showHideExplanation = false;
 
   newQuestion: FormGroup;
   listOptions: any = [];
@@ -71,13 +77,14 @@ export class NewQuestionComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.user = this.userService.getUser();
   }
 
   addOption(index) {
     if (index === -1) {
     this.options.insert(0,
       this.fb.group({
-      isCorrect: '',
+      isCorrect: 'false',
       body: '',
     }));
     index = 0;
@@ -85,7 +92,7 @@ export class NewQuestionComponent implements OnInit {
 
     this.options.insert(index + 1,
       this.fb.group({
-      isCorrect: '',
+      isCorrect: 'false',
       body: '',
     }));
   }
@@ -98,8 +105,29 @@ export class NewQuestionComponent implements OnInit {
     this.options.removeAt(index);
   }
 
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.newQuestion.value);
+  addExplantion(){
+    this.showHideExplanation = !this.showHideExplanation;
   }
-}
+
+  onSubmit() {
+    const obj = {
+      difficultyLevel: this.newQuestion.value.difficultyLevel,
+      questionType: this.newQuestion.value.questionType,
+      isPublic: this.newQuestion.value.isPublic,
+      body: this.newQuestion.value.question,
+      options:this.newQuestion.value.options,
+      explanation:this.newQuestion.value.explanation,
+      createdBy: this.user.id,
+      createdAt: Date.now()
+    };
+    this.service.addQuestion(obj).subscribe((result) => {
+      alert('Question successfully added!');
+      this.newQuestion.reset();
+    }, (err) => {
+      console.log(err);
+      alert(err);
+    });
+  }
+  }
+
+
