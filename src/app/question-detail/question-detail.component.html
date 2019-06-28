@@ -2,29 +2,52 @@
   <mat-card-header>
       <mat-card-title>{{question.createdBy}}   </mat-card-title>
 
-      <mat-card-subtitle>{{question.createdAt}}</mat-card-subtitle>
+      <mat-card-subtitle>{{question.createdAt | timeAgo}}</mat-card-subtitle>
       <mat-card-subtitle>{{question.difficultyLevel}} {{question.questionType}}</mat-card-subtitle>
           <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <div fxFlex></div>
+          <button mat-icon-button>
+              <mat-icon color="primary">create</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon color="primary">delete</mat-icon>
+              </button>
   </mat-card-header>
 
   <mat-card-content>
       <div [innerHTML]="question.body"></div>
   </mat-card-content>
 
-  <mat-card-content>
-      <mat-list fxLayout="column">
-          <mat-list-item *ngFor="let opt of question.options; let i = index;">
-              {{i + 1}}
-            <button   mat-stroked-button>
-                <div  [innerHTML]="opt.body"></div>
-              </button>
-          </mat-list-item>
+  <mat-card-content *ngIf="question.options.length > 0">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                Options
+              </mat-panel-title>
 
-        </mat-list>
+            </mat-expansion-panel-header>
+          <mat-list fxLayout="column">
+              <mat-list-item *ngFor="let opt of question.options; let i = index;">
+                  {{i + 1}}
+                <button   mat-stroked-button>
+                    <div  [innerHTML]="opt.body"></div>
+                  </button>
+              </mat-list-item>
+            </mat-list>
+      </mat-expansion-panel>
+
   </mat-card-content>
 
-  <mat-card-content>
+  <mat-card-content  *ngIf="question.explanation">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                Explanation
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
       <div  [innerHTML]="question.explanation"></div>
+    </mat-expansion-panel>
   </mat-card-content>
 
   <mat-divider [inset]="true"> </mat-divider>

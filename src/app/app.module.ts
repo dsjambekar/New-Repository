@@ -35,6 +35,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     LoginButtonComponent,
     MyRepoComponent,
     QuestionListComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
