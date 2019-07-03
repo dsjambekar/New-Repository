@@ -36,9 +36,10 @@ export class ContactComponent implements OnInit {
     contactDetails.Email = this.emailFormControl.value;
     contactDetails.Description = this.messageFormControl.value;
     this.rest.addProduct(contactDetails).subscribe((result) => {
-      console.log(result);
+      //console.log(result);
+      //need to do something with the result
     }, (err) => {
-      console.log(err);
+      //console.log(err);
     });
   }
 }

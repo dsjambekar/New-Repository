@@ -40,7 +40,6 @@ export class QuestionService {
   }
 
   addQuestion (question): Observable<any> {
-    console.log(question);
     return this.http.post<any>(endpoint + 'create', JSON.stringify(question), httpOptions).pipe(
       tap((question) => console.log(`added question w/ id=${question.id}`)),
       catchError(this.handleError<any>('addQuestion'))

@@ -35,45 +35,78 @@ export class UserService {
     if (isPlatformBrowser(this.platformId)) {
       // localStorage will be available: we can use it.
 
-    localStorage.setItem('userid', userData.id);
-    localStorage.setItem('useremail', userData.email);
-    localStorage.setItem('username', userData.name);
-    localStorage.setItem('userimage', userData.image);
-    localStorage.setItem('usertoken', userData.token);
-    localStorage.setItem('useridToken', userData.idToken);
+    // localStorage.setItem('userid', userData.id);
+    // localStorage.setItem('useremail', userData.email);
+    // localStorage.setItem('username', userData.name);
+    // localStorage.setItem('userimage', userData.image);
+    // localStorage.setItem('usertoken', userData.token);
+    // localStorage.setItem('useridToken', userData.idToken);
 
-    this.verifyUser(userData.idToken).subscribe((data: {}) => {
-      console.log(data);
+    this.verifyUser(userData.idToken).subscribe((userPayload) => {
+      let userInfo: any;
+      this.getUserInfo(userData.id).subscribe((data: {}) => {
+        userInfo = data;
+        if (!userInfo._id) {
+          userInfo = new UserModel();
+          userInfo.id = userData.id;
+          userInfo.email = userData.email;
+          userInfo.name = userData.name;
+          userInfo.givenName = userPayload.given_name;
+          userInfo.familyName = userPayload.family_name;
+          userInfo.image = userPayload.picture;
+          userInfo.locale = userPayload.locale;
+          userInfo.token = userPayload.token;
+          this.addNewUser(userInfo).subscribe((result) => {
+          }, (err) => {
+            console.log(err);
+            alert(err);
+          });
+        }
+      localStorage.setItem('userInfo',JSON.stringify(userInfo));
+      this.winRef.nativeWindow.location.reload(true);
+      });
+
+    }, (err) => {
+      console.log(err);
+      alert(err);
     });
-    // userInfo = this.getUserInfo(userData.idToken);
 
-    this.winRef.nativeWindow.location.reload(true);
   }
 }
 
-verifyUser (idToken): Observable<any> {
-  return this.http.get(endpoint + idToken).pipe(
-    map(this.extractData));
-}
+  addNewUser(userData: SocialUser) {
+    return this.http.post<any>(endpoint + 'create', JSON.stringify(userData), httpOptions).pipe(
+      tap((userData) => console.log(`added new user w/ id=${userData.id}`)),
+      catchError(this.handleError<any>('addUser'))
+    );
+  }
 
-// getUserInfo(idToken): Observable<any> {
-//   return this.http.get(endpoint + idToken).pipe(
-//     map(this.extractData));
-// }
+  getUserInfo(id: string): Observable<any> {
+    return this.http.get(endpoint + id).pipe(
+      map(this.extractData));
+  }
+
+  verifyUser (idToken): Observable<any> {
+    return this.http.get(endpoint + idToken + '/verify').pipe(
+      map(this.extractData));
+  }
 
   getUser() {
     if (isPlatformBrowser(this.platformId)) {
-    const user = new UserModel();
-    user.id = localStorage.getItem('userid');
-    user.email = localStorage.getItem('useremail');
-    user.name = localStorage.getItem('username');
-    user.image = localStorage.getItem('userimage');
+    let user = new UserModel();
+    if (localStorage.getItem('userInfo') != null) {
+      user = JSON.parse(localStorage.getItem('userInfo'));
+    }
+    // user.id = localStorage.getItem('userid');
+    // user.email = localStorage.getItem('useremail');
+    // user.name = localStorage.getItem('username');
+    // user.image = localStorage.getItem('userimage');
     return user;
   }
   }
   isUserLoggedIn() {
     if (isPlatformBrowser(this.platformId)) {
-    if (localStorage.getItem('userid') != null) {
+    if (localStorage.getItem('userInfo') != null) {
       return true;
     } else {
       return false;
@@ -83,10 +116,11 @@ verifyUser (idToken): Observable<any> {
 
   logout() {
   if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('userid');
-    localStorage.removeItem('useremail');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userimage');
+    //   localStorage.removeItem('userid');
+    // localStorage.removeItem('useremail');
+    // localStorage.removeItem('username');
+    // localStorage.removeItem('userimage');
+    localStorage.removeItem('userInfo');
     this.winRef.nativeWindow.location.reload(true);
   }}
 

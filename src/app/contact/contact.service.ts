@@ -35,9 +35,8 @@ export class ContactService {
   // }
 
   addProduct (contactDetails): Observable<any> {
-    console.log(contactDetails);
     return this.http.post<any>(endpoint + 'contactUs', JSON.stringify(contactDetails), httpOptions).pipe(
-      tap((product) => console.log(`added product w/ id=${product.id}`)),
+      tap((product) => console.log(`sent contact form w/ id=${product.id}`)),
       catchError(this.handleError<any>('sending contact details'))
     );
   }

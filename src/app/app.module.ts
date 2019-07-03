@@ -36,6 +36,7 @@ import { AuthGuardService } from './shared/auth-guard.service';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     MyRepoComponent,
     QuestionListComponent,
     QuestionDetailComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

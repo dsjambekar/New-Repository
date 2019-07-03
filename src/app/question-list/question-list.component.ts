@@ -22,12 +22,10 @@ export class QuestionListComponent implements OnInit {
     this.questions = [];
     if(this.user){
       this.service.getQuestionByUser(this.user.id).subscribe((data: {}) => {
-        console.log(data);
         this.questions = data;
       });
     } else{
       this.service.getAllPublicQuestions().subscribe((data: {}) => {
-        console.log(data);
         this.questions = data;
       });
     }
