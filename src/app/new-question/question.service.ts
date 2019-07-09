@@ -20,6 +20,7 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
 
   private extractData(res: Response) {
+    console.log(res);
     const body = res;
     return body || { };
   }

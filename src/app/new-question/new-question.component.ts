@@ -117,7 +117,7 @@ export class NewQuestionComponent implements OnInit {
       body: this.newQuestion.value.question,
       options:this.newQuestion.value.options,
       explanation:this.newQuestion.value.explanation,
-      createdBy: this.user.id,
+      createdBy: this.user._id,
       createdAt: Date.now()
     };
     this.service.addQuestion(obj).subscribe((result) => {

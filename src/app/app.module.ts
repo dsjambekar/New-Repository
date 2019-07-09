@@ -37,6 +37,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FilterBarComponent } from './filter-bar/filter-bar.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -78,7 +79,8 @@ const appRoutes: Routes = [
     QuestionListComponent,
     QuestionDetailComponent,
     TimeAgoPipe,
-    UserProfileComponent
+    UserProfileComponent,
+    FilterBarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

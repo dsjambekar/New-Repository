@@ -21,7 +21,7 @@ export class QuestionListComponent implements OnInit {
   getQuestions() {
     this.questions = [];
     if(this.user){
-      this.service.getQuestionByUser(this.user.id).subscribe((data: {}) => {
+      this.service.getQuestionByUser(this.user._id).subscribe((data: {}) => {
         this.questions = data;
       });
     } else{

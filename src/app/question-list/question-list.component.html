@@ -2,6 +2,7 @@
   question-list works!
 </p> -->
 <app-new-question *ngIf="userService.isUserLoggedIn()"></app-new-question>
+<app-filter-bar></app-filter-bar>
 <div *ngFor="let p of questions; let i=index;">
   <!-- {{p|json}} -->
   <app-question-detail [question]="p"></app-question-detail>
