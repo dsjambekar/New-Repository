@@ -16,7 +16,10 @@
   width: auto;
   margin: 0px;
   display: inline;
+}
 
+.mat-form-field{
+  margin: 5px;
 }
 
 .list-item{

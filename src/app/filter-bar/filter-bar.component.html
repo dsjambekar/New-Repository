@@ -1,0 +1,31 @@
+<mat-expansion-panel style="margin:1em;">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Filter questions
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-card >
+    <mat-card-content>
+
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Enter your search term here" [formControl]="nameFormControl">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option value="option">VA</mat-option>
+          <mat-option value="option">QA</mat-option>
+          <mat-option value="option">LR</mat-option>
+          <mat-option value="option">DI</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option value="option">Easy</mat-option>
+          <mat-option value="option">Medium</mat-option>
+          <mat-option value="option">Hard</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-stroked-button (click)="search()" >Search</button>
+    </mat-card-content>
+  </mat-card>
+</mat-expansion-panel>

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card style="margin:1em;">
   <mat-card-header>
       <mat-card-title>{{user.givenName}} {{user.familyName}}</mat-card-title>
     <img mat-card-avatar src={{user.image}}>
@@ -8,3 +8,4 @@
 
   </mat-card-content>
 </mat-card>
+<app-question-list [user]="user"></app-question-list>
