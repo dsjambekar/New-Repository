@@ -12,4 +12,8 @@ export class FilterBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  search(){
+
+  }
+
 }

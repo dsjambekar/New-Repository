@@ -6,9 +6,8 @@
   </mat-expansion-panel-header>
   <mat-card >
     <mat-card-content>
-
       <mat-form-field appearance="outline">
-        <input matInput placeholder="Enter your search term here" [formControl]="nameFormControl">
+        <input matInput placeholder="Enter your search term here">
       </mat-form-field>
       <mat-form-field>
         <mat-select placeholder="Select">
@@ -25,7 +24,7 @@
           <mat-option value="option">Hard</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-stroked-button (click)="search()" >Search</button>
+      <button mat-stroked-button>Search</button>
     </mat-card-content>
   </mat-card>
 </mat-expansion-panel>
