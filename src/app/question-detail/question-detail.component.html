@@ -1,10 +1,10 @@
 <mat-card style="margin:1em;">
   <mat-card-header>
-      <mat-card-title>{{question.createdBy}}   </mat-card-title>
+      <mat-card-title>{{question.user.givenName}} {{question.user.familyName}}  </mat-card-title>
 
       <mat-card-subtitle>{{question.createdAt | timeAgo}}</mat-card-subtitle>
       <mat-card-subtitle>{{question.difficultyLevel}} {{question.questionType}}</mat-card-subtitle>
-          <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <img mat-card-avatar src={{question.user.image}}>
           <div fxFlex></div>
           <button mat-icon-button>
               <mat-icon color="primary">create</mat-icon>

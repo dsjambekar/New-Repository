@@ -1,7 +1,7 @@
 <mat-card style="margin:1em;">
   <mat-card-header>
     <mat-card-title>{{user.name}} </mat-card-title>
-    <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+    <img mat-card-avatar src={{user.image}}>
   </mat-card-header>
   <form [formGroup]="newQuestion">
     <!-- <mat-checkbox formControlName="isPublic">Is Public</mat-checkbox> -->

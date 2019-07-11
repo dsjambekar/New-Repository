@@ -110,14 +110,18 @@ export class NewQuestionComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.user);
     const obj = {
       difficultyLevel: this.newQuestion.value.difficultyLevel,
       questionType: this.newQuestion.value.questionType,
       isPublic: this.newQuestion.value.isPublic,
       body: this.newQuestion.value.question,
-      options:this.newQuestion.value.options,
-      explanation:this.newQuestion.value.explanation,
-      createdBy: this.user.id,
+      options: this.newQuestion.value.options,
+      explanation: this.newQuestion.value.explanation,
+      createdBy: this.user._id,
+      // createdById: this.user.id,
+      // createdByName: this.user.givenName + ' ' + this.user.familyName,
+      // createdByImage: this.user.image,
       createdAt: Date.now()
     };
     this.service.addQuestion(obj).subscribe((result) => {

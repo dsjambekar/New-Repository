@@ -57,13 +57,17 @@ export class UserService {
           userInfo.locale = userPayload.locale;
           userInfo.token = userPayload.token;
           this.addNewUser(userInfo).subscribe((result) => {
+            console.log(result);
+            userInfo._id = result;
+            this.localStorage.setItem('userInfo',JSON.stringify(userInfo));
+            this.winRef.nativeWindow.location.reload(true);
           }, (err) => {
             console.log(err);
-            alert(err);
           });
+        } else{
+          this.localStorage.setItem('userInfo',JSON.stringify(userInfo));
+          this.winRef.nativeWindow.location.reload(true);
         }
-      localStorage.setItem('userInfo',JSON.stringify(userInfo));
-      this.winRef.nativeWindow.location.reload(true);
       });
 
     }, (err) => {
@@ -94,8 +98,8 @@ export class UserService {
   getUser() {
     if (isPlatformBrowser(this.platformId)) {
     let user = new UserModel();
-    if (localStorage.getItem('userInfo') != null) {
-      user = JSON.parse(localStorage.getItem('userInfo'));
+    if (this.localStorage.getItem('userInfo') != null) {
+      user = JSON.parse(this.localStorage.getItem('userInfo'));
     }
     // user.id = localStorage.getItem('userid');
     // user.email = localStorage.getItem('useremail');
