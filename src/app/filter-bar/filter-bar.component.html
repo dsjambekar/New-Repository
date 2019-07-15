@@ -7,24 +7,26 @@
   <mat-card >
     <mat-card-content>
       <mat-form-field appearance="outline">
-        <input matInput placeholder="Enter your search term here">
+        <input matInput placeholder="Enter your search term here" [(ngModel)]="searchText"  >
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Select">
-          <mat-option value="option">VA</mat-option>
-          <mat-option value="option">QA</mat-option>
-          <mat-option value="option">LR</mat-option>
-          <mat-option value="option">DI</mat-option>
+        <mat-select placeholder="Select" [(ngModel)]="questionType" >
+          <mat-option value="">All</mat-option>
+          <mat-option value="VA">VA</mat-option>
+          <mat-option value="QA">QA</mat-option>
+          <mat-option value="LR">LR</mat-option>
+          <mat-option value="DI">DI</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Select">
-          <mat-option value="option">Easy</mat-option>
-          <mat-option value="option">Medium</mat-option>
-          <mat-option value="option">Hard</mat-option>
+        <mat-select placeholder="Select" [(ngModel)]="difficultyLevel" >
+          <mat-option value="">All</mat-option>
+          <mat-option value="Easy">Easy</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="Hard">Hard</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-stroked-button>Search</button>
+      <button mat-stroked-button (click)="search()">Search</button>
     </mat-card-content>
   </mat-card>
 </mat-expansion-panel>

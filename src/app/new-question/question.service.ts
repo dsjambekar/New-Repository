@@ -25,10 +25,46 @@ export class QuestionService {
     return body || { };
   }
 
-  getAllPublicQuestions(): Observable<any> {
-    return this.http.get(endpoint).pipe(
-      map(this.extractData));
+  // getAllPublicQuestions(searchText: string, questionType: string, difficultyLevel: string): Observable<any> {
+  //   return this.http.get(endpoint).pipe(
+  //     map(this.extractData));
+  // }
+
+  getAllPublicQuestions(searchText: string,
+     questionType: string,
+      difficultyLevel: string,
+       user: string,
+        isPublic: boolean): Observable<any> {
+    const jsonString =
+    `{"searchText":"${searchText}",
+    "questionType": "${questionType}",
+    "difficultyLevel": "${difficultyLevel}",
+    "user": "",
+    "isPublic": "${isPublic}"
+    }`;
+    console.log(jsonString);
+    return this.http.post<any>(endpoint + 'search',jsonString , httpOptions).pipe(
+      tap((question) => console.log(`get question list w/ id=${question.id}`)),
+      catchError(this.handleError<any>('getAllPublicQuestions'))
+    );
   }
+
+  getAllQuestionsByUser(searchText: string,
+    questionType: string,
+     difficultyLevel: string,
+      user: string): Observable<any> {
+   const jsonString =
+   `{"searchText":"${searchText}",
+   "questionType": "${questionType}",
+   "difficultyLevel": "${difficultyLevel}",
+   "user": "${user}"
+   }`;
+   console.log(jsonString);
+   return this.http.post<any>(endpoint + 'searchByUser',jsonString , httpOptions).pipe(
+     tap((question) => console.log(`get question list w/ id=${question.id}`)),
+     catchError(this.handleError<any>('getAllPublicQuestions'))
+   );
+ }
 
   getQuestionById(id: string): Observable<any> {
     return this.http.get(endpoint + id).pipe(
@@ -39,6 +75,11 @@ export class QuestionService {
     return this.http.get(endpoint + user + '/list').pipe(
       map(this.extractData));
   }
+
+  // getQuestionByUser(user: string, searchText: string, questionType: string, difficultyLevel: string): Observable<any> {
+  //   return this.http.get(endpoint + user + '/list').pipe(
+  //     map(this.extractData));
+  // }
 
   addQuestion (question): Observable<any> {
     return this.http.post<any>(endpoint + 'create', JSON.stringify(question), httpOptions).pipe(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter-bar',
@@ -7,13 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterBarComponent implements OnInit {
 
+  @Output() searchEmitter = new EventEmitter<boolean>();
+  searchText = '';
+  questionType = '';
+  difficultyLevel = '';
+
   constructor() { }
 
   ngOnInit() {
   }
 
   search(){
-
+    this.searchEmitter.emit();
   }
 
 }
