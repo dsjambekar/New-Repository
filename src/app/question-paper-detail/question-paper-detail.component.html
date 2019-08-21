@@ -1,0 +1,26 @@
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-description>
+       <p> {{questionPaperModel.createdAt | timeAgo}}</p>
+      </mat-panel-description>
+      <mat-panel-description>
+          <div [innerHTML]="questionPaperModel.title"></div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+  <div *ngFor="let question of questionPaperModel.questions; let i=index;">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+             <p> {{question.questionType}}</p>
+            </mat-panel-description>
+            <mat-panel-description>
+                <p> {{question.difficultyLevel}}</p>
+            </mat-panel-description>
+            <mat-panel-description>
+                <div [innerHTML]="question.body"></div>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </div>
+  </mat-expansion-panel>

@@ -1,0 +1,7 @@
+
+<div *ngFor="let qp of data.questionPapers">
+  <mat-checkbox [(ngModel)]=qp.isSelected></mat-checkbox>
+  <p [innerHTML]="qp.questionPaper.title">
+  </p>
+  <button mat-stroked-button>Add</button>
+</div>

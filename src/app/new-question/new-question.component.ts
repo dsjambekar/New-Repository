@@ -110,7 +110,6 @@ export class NewQuestionComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user);
     const obj = {
       difficultyLevel: this.newQuestion.value.difficultyLevel,
       questionType: this.newQuestion.value.questionType,

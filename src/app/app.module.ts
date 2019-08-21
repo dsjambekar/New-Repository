@@ -38,6 +38,11 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { QuestionPaperComponent } from './question-paper/question-paper.component';
+import { NewQuestionPaperComponent } from './question-paper/new-question-paper/new-question-paper.component';
+import { QuestionPaperListComponent } from './question-paper/question-paper-list/question-paper-list.component';
+import { QuestionPaperDetailComponent } from './question-paper-detail/question-paper-detail.component';
+import { QuestionPaperDialogComponent } from './question-paper/question-paper-dialog/question-paper-dialog.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -80,7 +85,12 @@ const appRoutes: Routes = [
     QuestionDetailComponent,
     TimeAgoPipe,
     UserProfileComponent,
-    FilterBarComponent
+    FilterBarComponent,
+    QuestionPaperComponent,
+    NewQuestionPaperComponent,
+    QuestionPaperListComponent,
+    QuestionPaperDetailComponent,
+    QuestionPaperDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -106,7 +116,8 @@ const appRoutes: Routes = [
 AuthGuardService ],
   bootstrap: [AppComponent],
   entryComponents: [
-    SigninComponent
+    SigninComponent,
+    QuestionPaperDialogComponent
   ]
 })
 export class AppModule { }
